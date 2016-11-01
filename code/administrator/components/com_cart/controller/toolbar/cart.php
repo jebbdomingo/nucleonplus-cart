@@ -81,12 +81,12 @@ class ComCartControllerToolbarCart extends ComKoowaControllerToolbarActionbar
 
     protected function _afterRead(KControllerContextInterface $context)
     {
-        parent::_afterRead($context);
+        $this->_addReadCommands($context);
 
+        parent::_afterRead($context);
+        
         $this->removeCommand('apply');
         $this->removeCommand('save');
-        
-        $this->_addReadCommands($context);
     }
     
     /**
