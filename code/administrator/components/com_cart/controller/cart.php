@@ -169,8 +169,5 @@ abstract class ComCartControllerCart extends ComKoowaControllerModel
         foreach ($items as $item) {
             $item->delete();
         }
-
-        $response = $context->getResponse();
-        $response->addMessage('Item has been deleted from your shopping cart');
     }
 }
