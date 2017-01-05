@@ -50,7 +50,7 @@ abstract class ComCartControllerCart extends ComKoowaControllerModel
         $data       = $context->request->data;
         var_dump($data->row);
         var_dump($data->quantity);
-        var_dump($data);
+        // var_dump($data);
         die('test');
         $translator = $this->getObject('translator');
         $result     = false;
