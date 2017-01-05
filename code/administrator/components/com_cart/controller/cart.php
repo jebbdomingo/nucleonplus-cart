@@ -48,6 +48,10 @@ abstract class ComCartControllerCart extends ComKoowaControllerModel
     protected function _validateAdd(KControllerContextInterface $context)
     {
         $data       = $context->request->data;
+        var_dump($data->row);
+        var_dump($data->quantity);
+        var_dump($data);
+        die('test');
         $translator = $this->getObject('translator');
         $result     = false;
 
