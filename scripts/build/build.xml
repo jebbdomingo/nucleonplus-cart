@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<project name="NucleonPlusCart" default="build">
+
+    <property file="build.properties" />
+
+    <target name="build">
+        <delete dir="tmp" includeemptydirs="true" />
+
+        <copy todir="tmp">
+            <fileset dir="../../code" />
+        </copy>
+
+        <move file="tmp/administrator/components/com_cart/cart.xml" tofile="tmp/cart.xml" overwrite="true" />
+        <copy todir="tmp/resources/install">
+            <fileset dir="tmp/administrator/components/com_cart/resources/install/" />
+        </copy>
+
+        <delete file="com_cart.zip" quiet="true" />
+        <zip destfile="com_cart.zip" basedir="tmp" />
+
+        <delete dir="tmp" includeemptydirs="true" />
+    </target>
+</project>
