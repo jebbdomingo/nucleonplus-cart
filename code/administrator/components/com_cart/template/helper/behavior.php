@@ -11,7 +11,7 @@
 class ComCartTemplateHelperBehavior extends ComKoowaTemplateHelperBehavior
 {
     /**
-     * Makes delete button actions
+     * Makes delete button action
      *
      * @param array $config
      * 
@@ -39,6 +39,94 @@ class ComCartTemplateHelperBehavior extends ComKoowaTemplateHelperBehavior
                     $('input[name=\"_action\"]').val('deleteitem');
                     $('input[name=\"item_id\"]').val(id);
                     $('form[name=\"cartForm\"]').submit();
+                });
+            });
+            </script>
+            ";
+
+            self::$_loaded[$signature] = true;
+        }
+
+        return $html;
+    }
+
+    /**
+     * Makes add button action
+     *
+     * @param array $config
+     * 
+     * @return string
+     */
+    public function addable($config = array())
+    {
+        $config = new KObjectConfigJson($config);
+        $config->append(array(
+            'form'     => 'k-js-form-controller',
+            'action'   => 'add',
+            'selector' => '.k-js-cart-form--add',
+        ));
+
+        $html = $this->koowa();
+
+        $signature = md5(serialize(array($config->selector)));
+        if (!isset(self::$_loaded[$signature])) {
+            $html .= "
+            <script>
+            kQuery(function($) {
+                $('{$config->selector}').on('click', function(event){
+                    event.preventDefault();
+
+                    if ($('input[name=\"_action\"]').val()) {
+                        $('input[name=\"_action\"]').val('{$config->action}');
+                    } else {
+                        $('form.{$config->form}').append('<input type=\"hidden\" name=\"_action\" value=\"{$config->action}\" />');
+                    }
+
+                    $('form.{$config->form}').submit();
+                });
+            });
+            </script>
+            ";
+
+            self::$_loaded[$signature] = true;
+        }
+
+        return $html;
+    }
+
+    /**
+     * Makes update button action
+     *
+     * @param array $config
+     * 
+     * @return string
+     */
+    public function updatable($config = array())
+    {
+        $config = new KObjectConfigJson($config);
+        $config->append(array(
+            'form'     => 'k-js-form-controller',
+            'action'   => 'updatecart',
+            'selector' => '.k-js-cart-form--update',
+        ));
+
+        $html = $this->koowa();
+
+        $signature = md5(serialize(array($config->selector)));
+        if (!isset(self::$_loaded[$signature])) {
+            $html .= "
+            <script>
+            kQuery(function($) {
+                $('{$config->selector}').on('click', function(event){
+                    event.preventDefault();
+
+                    if ($('input[name=\"_action\"]').val()) {
+                        $('input[name=\"_action\"]').val('{$config->action}');
+                    } else {
+                        $('form.{$config->form}').append('<input type=\"hidden\" name=\"_action\" value=\"{$config->action}\" />');
+                    }
+
+                    $('form.{$config->form}').submit();
                 });
             });
             </script>
