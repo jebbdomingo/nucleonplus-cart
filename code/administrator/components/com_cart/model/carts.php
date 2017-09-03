@@ -15,7 +15,7 @@ abstract class ComCartModelCarts extends KModelDatabase
         parent::__construct($config);
 
         $this->getState()
-            ->insert('customer', 'int')
+            ->insert('customer', 'string')
             ->insert('cart_id', 'int')
         ;
     }
