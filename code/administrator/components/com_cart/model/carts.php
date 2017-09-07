@@ -8,7 +8,7 @@
  * @link        https://github.com/jebbdomingo/nucleonplus for the canonical source repository
  */
 
-abstract class ComCartModelCarts extends KModelDatabase
+class ComCartModelCarts extends KModelDatabase
 {
     public function __construct(KObjectConfig $config)
     {
@@ -38,14 +38,16 @@ abstract class ComCartModelCarts extends KModelDatabase
     /**
      * Get the total amount of this cart
      *
+     * @deprecated
      * @return decimal
      */
-    abstract public function getAmount();
+    public function getAmount(){}
 
     /**
      * Get the total weight of this order
      *
+     * @deprecated
      * @return integer
      */
-    abstract public function getWeight();
+    public function getWeight(){}
 }
